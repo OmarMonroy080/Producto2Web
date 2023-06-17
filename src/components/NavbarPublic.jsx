@@ -18,7 +18,7 @@ const NavbarPublic = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <NavLink className="navbar-brand" to="/">
-              Biblioteca
+              Bibliotecaasdfasd
             </NavLink>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
