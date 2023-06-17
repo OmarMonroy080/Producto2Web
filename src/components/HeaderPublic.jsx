@@ -1,5 +1,4 @@
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-// import NavbarPublic from './NavbarPublic';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const HeaderPublic = () => {
   const { state } = useLocation();
@@ -23,19 +22,34 @@ const HeaderPublic = () => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <NavLink className="navbar-brand fw-bold" to="/">
+              <Link className="navbar-brand fw-bold" to="/">
                 Muebleria
-              </NavLink>
+              </Link>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="login">
-                    Iniciar sesion
-                  </NavLink>
+                  <Link className="nav-link" to="/">
+                    Inicio
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="register">
-                    Registro
-                  </NavLink>
+                  <Link className="nav-link" to="/catalogo">
+                    Catálogo
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/galeria">
+                    Galería
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/nosotros">
+                    Nosotros
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/contacto">
+                    Contacto
+                  </Link>
                 </li>
               </ul>
 
@@ -44,10 +58,10 @@ const HeaderPublic = () => {
                   <span>{state?.email}</span>
                 ) : (
                   <>
-                    <Link className="btn btn-outline-primary me-2" to="login">
-                      Iniciar sesion
+                    <Link className="btn btn-outline-primary me-2" to="/login">
+                      Iniciar sesión
                     </Link>
-                    <Link className="btn btn-primary" to="register">
+                    <Link className="btn btn-primary" to="/register">
                       Registro
                     </Link>
                   </>
