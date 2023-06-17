@@ -6,6 +6,9 @@ import DashboardPage from './pages/DashboardPage';
 import HeaderPublic from './components/HeaderPublic';
 import './App.css';
 import Footer from './components/FooterPublic';
+import CataloguePage from './pages/CataloguePage';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="catalogue" element={<CataloguePage />} />
+          <Route path="aboutus" element={<AboutUsPage />} />
+          <Route path="contact" element={<ContactPage />} />
         </Route>
       </Routes>
       <Footer />

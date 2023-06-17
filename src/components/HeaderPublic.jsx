@@ -25,6 +25,7 @@ const HeaderPublic = () => {
               <Link className="navbar-brand fw-bold" to="/">
                 Muebleria
               </Link>
+
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
@@ -32,26 +33,22 @@ const HeaderPublic = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/catalogo">
+                  <Link className="nav-link" to="/catalogue">
                     Catálogo
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/galeria">
-                    Galería
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/nosotros">
+                  <Link className="nav-link" to="/aboutus">
                     Nosotros
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/contacto">
+                  <Link className="nav-link" to="/contact">
                     Contacto
                   </Link>
                 </li>
               </ul>
+
 
               <div className="d-flex">
                 {state?.logged ? (
