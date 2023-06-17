@@ -21,38 +21,39 @@ const HeaderPublic = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <Link className="navbar-brand fw-bold" to="/">
-                Muebleria
-              </Link>
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <div className="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
+              <div>
+                <Link className="navbar-brand fw-bold ms-auto" to="/">
+                  Muebleria
+                </Link>
+              </div>
+              <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">
+                  <Link className="nav-link fw-bold" to="/">
                     Inicio
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/catalogo">
+                  <Link className="nav-link fw-bold" to="/catalogo">
                     Catálogo
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/galeria">
+                  <Link className="nav-link fw-bold" to="/galeria">
                     Galería
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/nosotros">
+                  <Link className="nav-link fw-bold" to="/nosotros">
                     Nosotros
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/contacto">
+                  <Link className="nav-link fw-bold" to="/contacto">
                     Contacto
                   </Link>
                 </li>
               </ul>
-
               <div className="d-flex">
                 {state?.logged ? (
                   <span>{state?.email}</span>
