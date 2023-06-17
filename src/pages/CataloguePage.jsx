@@ -39,6 +39,8 @@ const CataloguePage = () => {
 
 
       <h2>Mesas</h2>
+      <p>Descubre nuestra colección de mesas elegantes y funcionales para tu hogar.</p>
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {tables.map((product) => (
           <CardProduct
@@ -53,6 +55,8 @@ const CataloguePage = () => {
 
 
       <h2>Colchones</h2>
+      <p>Encuentra el colchón perfecto que te brinde el descanso que necesitas.</p>
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {beds.map((product) => (
           <CardProduct
@@ -67,6 +71,8 @@ const CataloguePage = () => {
 
 
       <h2>Sillas</h2>
+      <p>Descubre nuestra amplia selección de sillas cómodas y con estilo para tu hogar u oficina.</p>
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {chairs.map((product) => (
           <CardProduct
@@ -81,6 +87,8 @@ const CataloguePage = () => {
 
 
       <h2>Estanteria</h2>
+      <p>Añade estilo y funcionalidad a tu espacio con nuestras estanterías de alta calidad.</p>
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {bookcases.map((product) => (
           <CardProduct
