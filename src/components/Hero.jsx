@@ -1,4 +1,5 @@
 import img from '../assets/images/mueble-hero.jpg';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -14,8 +15,8 @@ const Hero = () => {
           ad ab accusantium voluptatum animi vero sunt, voluptatibus veniam.
           Assumenda, consequatur.
         </p>
-        <button className="btn btn-primary">Iniciar sesion</button>
-        <button className="btn btn-outline-primary">Registrar</button>
+        <Link className="btn btn-primary"to="login">Iniciar sesion</Link>
+        <Link className="btn btn-outline-primary" to="register">Registrar</Link>
       </div>
     </>
   );
