@@ -38,7 +38,6 @@ const Footer = () => {
             <p>Email: info@example.com</p>
           </div>
         </div>
-        <hr />
         <span className="text-muted">© 2023 Nombre de la empresa. Todos los derechos reservados.</span>
       </div>
     </div>

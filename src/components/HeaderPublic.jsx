@@ -49,7 +49,7 @@ const HeaderPublic = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link fw-bold" to="/contacto">
+                  <Link className="nav-link fw-bold" to="/contact">
                     Contacto
                   </Link>
                 </li>
