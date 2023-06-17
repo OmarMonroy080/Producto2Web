@@ -1,7 +1,7 @@
 const CardProduct = ({ src, title, description }) => {
   return (
     <div className="col">
-      <div className="card mb-3 border-0" style={{ maxWidth: 540, height: 200 }}>
+      <div className="card mb-3 border-0" style={{ maxWidth: 540, minHeight: 200 }}>
         <div className="row g-0 h-100">
           <div className="col-md-4 bg-white d-flex align-items-center">
             <img src={src} className="img-fluid rounded-start" alt="..." />
