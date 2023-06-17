@@ -1,14 +1,6 @@
-import img from '../assets/info.svg';
 
-const estilosimg={
-  paddingTop:"8%"
-}
-const estilos = {
-  justifyContent: "center",
-  textAlign: "center",
-  display: "block",
-  paddingTop: "2%"
-};
+
+
 const AboutUsPage = () => {
   return (
     <>
