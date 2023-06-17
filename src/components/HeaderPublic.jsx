@@ -34,17 +34,12 @@ const HeaderPublic = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link fw-bold" to="/catalogo">
+                  <Link className="nav-link fw-bold" to="/catalogue">
                     Catálogo
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link fw-bold" to="/galeria">
-                    Galería
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link fw-bold" to="/nosotros">
+                  <Link className="nav-link fw-bold" to="/aboutus">
                     Nosotros
                   </Link>
                 </li>
