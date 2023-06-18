@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import Footer from './FooterPublic';
 
 const HeaderPublic = () => {
   const { state } = useLocation();
@@ -7,9 +8,9 @@ const HeaderPublic = () => {
 
   return (
     <>
-      <header>
+      <header className='container-fluid'>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container-fluid">
+          <div className="container">
             <button
               className="navbar-toggler"
               type="button"
@@ -21,7 +22,10 @@ const HeaderPublic = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
+            <div
+              className="collapse navbar-collapse justify-content-between"
+              id="navbarTogglerDemo01"
+            >
               <div>
                 <Link className="navbar-brand fw-bold ms-auto" to="/">
                   Muebleria
@@ -50,18 +54,12 @@ const HeaderPublic = () => {
                 </li>
               </ul>
               <div className="d-flex">
-                {state?.logged ? (
-                  <span>{state?.email}</span>
-                ) : (
-                  <>
-                    <Link className="btn btn-outline-primary me-2" to="/login">
-                      Iniciar sesión
-                    </Link>
-                    <Link className="btn btn-primary" to="/register">
-                      Registro
-                    </Link>
-                  </>
-                )}
+                <Link className="btn btn-outline-primary me-2" to="/login">
+                  Iniciar sesión
+                </Link>
+                <Link className="btn btn-primary" to="/register">
+                  Registro
+                </Link>
               </div>
             </div>
           </div>
@@ -69,6 +67,8 @@ const HeaderPublic = () => {
       </header>
 
       <Outlet />
+
+      <Footer />
     </>
   );
 };

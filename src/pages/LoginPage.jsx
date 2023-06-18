@@ -35,7 +35,7 @@ const LoginPage = () => {
       return;
     }
 
-    navigate('/dashboard', {
+    navigate('/manager', {
       replace: true,
       state: { logged: true, email: form.email },
     });

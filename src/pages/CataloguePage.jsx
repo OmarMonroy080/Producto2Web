@@ -6,13 +6,15 @@ const tables = [
   { id: 4, title: 'Product 4', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dwb20d35e5/images/productsetpalaciodehierro1/large/productsetpalaciodehierro1_x2.jpg?sw=400&sh=455', },
   { id: 5, title: 'Product 5', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw1bb0b099/images/42579034/large/42579034_x2.jpg?sw=400&sh=455', },
   { id: 6, title: 'Product 6', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw835f3942/images/productsetdeltoro1/large/productsetdeltoro1_x2.jpg?sw=400&sh=455', },];
-const beds = [
+
+  const beds = [
   { id: 1, title: 'Product 1', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw0c8e1e91/images/42737458/large/42737458_x2.jpg?sw=400&sh=455', },
   { id: 2, title: 'Product 2', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw29e5d93d/images/bundlespringair4/large/bundlespringair4_x1.jpg?sw=400&sh=455', },
   { id: 3, title: 'Product 3', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw578b69ab/images/42744384/large/42744384_x2.jpg?sw=400&sh=455', },
   { id: 4, title: 'Product 4', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dwe9653904/images/bundlespringair3/large/bundlespringair3_x1.jpg?sw=400&sh=455', },
   { id: 5, title: 'Product 5', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw9474df19/images/40801208/large/40801208_x2.jpg?sw=400&sh=455', },
   { id: 6, title: 'Product 6', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw5676e650/images/43280364/large/43280364_x2.jpg?sw=400&sh=455', },];
+
   const chairs = [
     { id: 1, title: 'Product 1', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw5a1efc61/images/42962483/large/42962483_x2.jpg?sw=400&sh=455' },
     { id: 2, title: 'Product 2', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw2327aa1a/images/41375240/large/41375240_x2.jpg?sw=400&sh=455' },
@@ -21,6 +23,7 @@ const beds = [
     { id: 5, title: 'Product 5', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dwc1ba6a9f/images/42533360/large/42533360_x2.jpg?sw=400&sh=455' },
     { id: 6, title: 'Product 6', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw117941ad/images/41714202/large/41714202_x2.jpg?sw=400&sh=455' }
   ];
+
   const bookcases = [
     { id: 1, title: 'Product 1', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dwcb903f33/images/setcubeslibrero1/large/setcubeslibrero1_x1.jpg?sw=400&sh=455' },
     { id: 2, title: 'Product 2', description: 'lorem', src: 'https://www.elpalaciodehierro.com/dw/image/v2/BDKB_PRD/on/demandware.static/-/Sites-palacio-master-catalog/default/dw614c27aa/images/43046329/large/43046329_x1.jpg?sw=400&sh=455' },
@@ -33,12 +36,10 @@ const beds = [
 
 const CataloguePage = () => {
   return (
-    <>
-      <h1>Catálogo</h1>
+    <div className='container'>
+      <h1 className='text-primary'>Catálogo</h1>
 
-
-
-      <h2>Mesas</h2>
+      <h2 className='text-primary-emphasis '>Mesas</h2>
       <p>Descubre nuestra colección de mesas elegantes y funcionales para tu hogar.</p>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -52,9 +53,7 @@ const CataloguePage = () => {
         ))}
       </div>
 
-
-
-      <h2>Colchones</h2>
+      <h2 className='text-primary-emphasis '>Colchones</h2>
       <p>Encuentra el colchón perfecto que te brinde el descanso que necesitas.</p>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -68,9 +67,7 @@ const CataloguePage = () => {
         ))}
       </div>
 
-
-
-      <h2>Sillas</h2>
+      <h2 className='text-primary-emphasis '>Sillas</h2>
       <p>Descubre nuestra amplia selección de sillas cómodas y con estilo para tu hogar u oficina.</p>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -84,9 +81,7 @@ const CataloguePage = () => {
         ))}
       </div>
 
-
-
-      <h2>Estanteria</h2>
+      <h2 className='text-primary-emphasis '>Estanteria</h2>
       <p>Añade estilo y funcionalidad a tu espacio con nuestras estanterías de alta calidad.</p>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -100,10 +95,7 @@ const CataloguePage = () => {
         ))}
       </div>
 
-
-
-        
-    </>
+    </div>
   );
 };
 

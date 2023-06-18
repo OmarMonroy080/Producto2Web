@@ -35,7 +35,7 @@ const LoginPage = () => {
       return;
     }
 
-    navigate('/dashboard', {
+    navigate('/manager', {
       replace: true,
       state: { logged: true, email: form.email },
     });
@@ -123,7 +123,7 @@ const LoginPage = () => {
                     </label>
                   </div>
                   <div className="mb-3">
-                    <a href="#">¿Olvido su contraseña?</a>
+                    <a href="#">¿Olvidó su contraseña?</a>
                   </div>
                 </div>
 
