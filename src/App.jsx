@@ -31,6 +31,7 @@ function App() {
           <Route path="aboutus" element={<AboutUsPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>
+        
         <Route path="/manager" element={<HeaderAdmin />}>
           <Route index element={<HomeAdminPage />} />
 

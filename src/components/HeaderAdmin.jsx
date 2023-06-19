@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import '../assets/css/sidebar.css';
 import { useEffect } from 'react';
 import imgAvatar from '../assets/images/avatar.png';
+
 const HeaderAdmin = () => {
   useEffect(() => {
     // ==================================
@@ -30,20 +31,20 @@ const HeaderAdmin = () => {
 
     showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
 
-    // Link active
-    const linkColor = document.querySelectorAll('.nav_link');
+    // // Link active
+    // const linkColor = document.querySelectorAll('.nav_link');
 
-    function colorLink() {
-      if (linkColor) {
-        linkColor.forEach((l) => l.classList.remove('active'));
-        this.classList.add('active');
-      }
-    }
-    linkColor.forEach((l) => l.addEventListener('click', colorLink));
+    // function colorLink() {
+    //   if (linkColor) {
+    //     linkColor.forEach((l) => l.classList.remove('active'));
+    //     this.classList.add('active');
+    //   }
+    // }
+    // linkColor.forEach((l) => l.addEventListener('click', colorLink));
   }, []);
 
   return (
-    <>
+    <div className='body vh-100'>
       <div id="body-pd">
         <header className="header" id="header">
           <div className="header_toggle">
@@ -103,11 +104,11 @@ const HeaderAdmin = () => {
           </nav>
         </div>
 
-        <main className="container  mt-5 pt-5">
+        <main className="container pt-4 vh-100 ">
           <Outlet />
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

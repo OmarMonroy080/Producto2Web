@@ -8,8 +8,11 @@ const HeaderPublic = () => {
 
   return (
     <>
-      <header className='container-fluid'>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <header
+        className="container-fluid bg-light"
+        style={{ marginBottom: '4rem' }}
+      >
+        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm  ">
           <div className="container">
             <button
               className="navbar-toggler"
@@ -55,10 +58,10 @@ const HeaderPublic = () => {
               </ul>
               <div className="d-flex">
                 <Link className="btn btn-outline-primary me-2" to="/login">
-                  Iniciar sesión
+                  <i className="fa-solid fa-right-to-bracket"></i>
                 </Link>
                 <Link className="btn btn-primary" to="/register">
-                  Registro
+                  <i className="fas fa-user-edit"></i>
                 </Link>
               </div>
             </div>

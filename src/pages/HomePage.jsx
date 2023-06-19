@@ -16,7 +16,7 @@ const products = [
 const HomePage = () => {
   return (
     <main className="flex-shrink-0 ">
-      <div className="container mt-4">
+      <div className="container">
         <div className="row bg-light shadow rounded mb-5">
           <Hero />
         </div>

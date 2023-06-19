@@ -1,10 +1,9 @@
 const AboutUsPage = () => {
   return (
-    <>
       <div className="container">
         <div className="row">
           <div className="col ">
-            <div className="py-5">
+            <div className="pb-5">
               <h1 className="text-primary ">Nosotros</h1>
               <p className="lead">
                 Somos una mueblería dedicada a brindarle los mejores muebles
@@ -49,7 +48,6 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 export default AboutUsPage;

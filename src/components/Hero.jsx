@@ -1,5 +1,5 @@
 import img from '../assets/images/mueble.png';
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const Hero = () => {
   return (
