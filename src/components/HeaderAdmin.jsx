@@ -4,51 +4,37 @@ import { useEffect } from 'react';
 import imgAvatar from '../assets/images/avatar.png';
 
 const HeaderAdmin = () => {
-  useEffect(() => {
-    // ==================================
-    // ASIDE
-    // ==================================
+  const handleAside = () => {
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
-      const toggle = document.getElementById(toggleId),
-        nav = document.getElementById(navId),
-        bodypd = document.getElementById(bodyId),
-        headerpd = document.getElementById(headerId);
+      const toggle = document.getElementById(toggleId);
+      const nav = document.getElementById(navId);
+      const bodypd = document.getElementById(bodyId);
+      const headerpd = document.getElementById(headerId);
 
       // Validate that all variables exist
-      if (toggle && nav && bodypd && headerpd) {
-        toggle.addEventListener('click', () => {
-          // show navbar
-          nav.classList.toggle('show');
-          // change icon
-          toggle.classList.toggle('bx-x');
-          // add padding to body
-          bodypd.classList.toggle('body-pd');
-          // add padding to header
-          headerpd.classList.toggle('body-pd');
-        });
-      }
+      // show navbar
+      nav.classList.toggle('show');
+      // change icon
+      toggle.classList.toggle('bx-x');
+      // add padding to body
+      bodypd.classList.toggle('body-pd');
+      // add padding to header
+      headerpd.classList.toggle('body-pd');
     };
 
     showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
-
-    // // Link active
-    // const linkColor = document.querySelectorAll('.nav_link');
-
-    // function colorLink() {
-    //   if (linkColor) {
-    //     linkColor.forEach((l) => l.classList.remove('active'));
-    //     this.classList.add('active');
-    //   }
-    // }
-    // linkColor.forEach((l) => l.addEventListener('click', colorLink));
-  }, []);
+  };
 
   return (
-    <div className='body vh-100'>
+    <div className="body vh-100">
       <div id="body-pd">
         <header className="header" id="header">
           <div className="header_toggle">
-            <i className="bx bx-menu" id="header-toggle"></i>
+            <i
+              className="bx bx-menu"
+              id="header-toggle"
+              onClick={handleAside}
+            ></i>
           </div>
           <a className="header_img" title="Manage">
             <img src={imgAvatar} alt="" />
@@ -63,22 +49,34 @@ const HeaderAdmin = () => {
                 <span className="nav_logo-name">Biblioteca</span>
               </Link>
               <div className="nav_list">
-                <NavLink className="nav_link text-decoration-none " to="/manager">
+                <NavLink
+                  className="nav_link text-decoration-none "
+                  to="/manager"
+                >
                   <i className="bx bx-home-alt-2 nav_icon"></i>
                   <span className="nav_name">Inicio</span>
                 </NavLink>
 
-                <NavLink className="nav_link text-decoration-none " to="categories">
+                <NavLink
+                  className="nav_link text-decoration-none "
+                  to="categories"
+                >
                   <i className="fas fa-share-square nav_icon"></i>
                   <span className="nav_name">Categorias</span>
                 </NavLink>
 
-                <NavLink className="nav_link text-decoration-none " to="products">
+                <NavLink
+                  className="nav_link text-decoration-none "
+                  to="products"
+                >
                   <i className="fas fa-cart-arrow-down nav_icon"></i>
                   <span className="nav_name">Products</span>
                 </NavLink>
 
-                <NavLink className="nav_link text-decoration-none " to="outputs-inputs">
+                <NavLink
+                  className="nav_link text-decoration-none "
+                  to="outputs-inputs"
+                >
                   <i className="fas fa-exchange-alt nav_icon"></i>
                   <span className="nav_name">Entradas y salidas</span>
                 </NavLink>
@@ -88,9 +86,12 @@ const HeaderAdmin = () => {
                   <span className="nav_name">Usuarios</span>
                 </NavLink>
 
-                <NavLink className="nav_link text-decoration-none " to="dashboard">
+                <NavLink
+                  className="nav_link text-decoration-none "
+                  to="dashboard"
+                >
                   <i className="fas fa-chart-line nav_icon"></i>
-                  <span className="nav_name">dasboard</span>
+                  <span className="nav_name">Dashboard</span>
                 </NavLink>
               </div>
             </div>

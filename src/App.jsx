@@ -18,6 +18,7 @@ import CreateCategory from './pages/CreateCategory';
 import CreateProduct from './pages/CreateProduct';
 import CreateInputOutput from './pages/CreateInputOutput';
 import CreateUser from './pages/CreateUser';
+import Page404 from './pages/Page404';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
 
           <Route path="dashboard" element={<DashboardPage />} />
         </Route>
+          <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );

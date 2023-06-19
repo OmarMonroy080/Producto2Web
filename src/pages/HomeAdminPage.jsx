@@ -1,6 +1,6 @@
 const HomeAdminPage = () => {
   return ( <>
-  <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+  <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg bg-light">
       <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 className="display-4 fw-bold lh-1 text-body-emphasis">Muebleria</h1>
         <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nihil commodi error aliquam adipisci suscipit doloremque hic sequi facere, odit sed dignissimos quidem, qui voluptatibus architecto esse autem, totam ipsam.</p>
