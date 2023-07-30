@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import img from '../assets/login.svg';
 import imgBackground from '../assets/images/background.png';
-
+import isValidEmail from "../../ConsumoAPI/Usuarios/ValidarCorreoFormat";
+import {ValidarLogin} from"../../ConsumoAPI/Usuarios/ValidarUsAPI";
+import { showAlerta } from "../../ConsumoAPI/Funciones/funciones";
 const initialForm = {
   email: '',
   password: '',
 };
 
-const LoginPage = () => {
+const LoginPage = ({ setAutenticado }) => {
   const [form, setForm] = useState(initialForm);
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -20,27 +20,27 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     if (!form.email || !form.password) {
-      Swal.fire({
-        title: 'Oops...',
-        text: '¡Uno o más campos están vacíos!',
-        icon: 'warning',
-        iconColor: 'var(--bs-warning)',
-        confirmButtonColor: 'var(--bs-primary)',
-        confirmButtonText: 'Entiendo',
-      });
-      return;
+      showAlerta("¡Uno o más campos están vacíos!","error")
+    }else{
+      const correoIsValid = isValidEmail(form.email);
+      if(correoIsValid){
+        const parametos ={ correo: form.email,contraseña:form.password};;
+        const Url = "http://www.muebleriatroncoso.somee.com/api/Usuario/Login";
+        const metodo = "POST";
+        const respuesta = await ValidarLogin(metodo,parametos,Url);
+        if(respuesta.isLoggedIn){
+          setAutenticado({ isLoggedIn: 1, nombre: respuesta.nombre });
+          navigate('/manager', {
+            replace: true,
+            state: { logged: true, email: form.email },
+          });
+        }
+      }
     }
-
-    navigate('/manager', {
-      replace: true,
-      state: { logged: true, email: form.email },
-    });
-
-    handleReset();
   };
 
   const handleReset = () => {
@@ -84,7 +84,7 @@ const LoginPage = () => {
                 sequi, rem nam!
               </p>
 
-              <form onSubmit={handleSubmit}>
+              <form >
                 <div className="form-floating mb-3">
                   <input
                     type="email"
@@ -128,7 +128,7 @@ const LoginPage = () => {
                 </div>
 
                 <div className="d-grid gap-2">
-                  <button className="btn btn-primary me-1" type="submit">
+                  <button className="btn btn-primary me-1" onClick={handleSubmit}>
                     <i className="fa-solid fa-paper-plane me-1"></i>
                     Iniciar sesion
                   </button>
