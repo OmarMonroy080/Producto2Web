@@ -58,10 +58,7 @@ const HeaderPublic = () => {
               </ul>
               <div className="d-flex">
                 <Link className="btn btn-outline-primary me-2" to="/login">
-                  <i className="fa-solid fa-right-to-bracket"></i>
-                </Link>
-                <Link className="btn btn-primary" to="/register">
-                  <i className="fas fa-user-edit"></i>
+                  <i className="fa-solid fa-right-to-bracket">  Entrar</i>
                 </Link>
               </div>
             </div>

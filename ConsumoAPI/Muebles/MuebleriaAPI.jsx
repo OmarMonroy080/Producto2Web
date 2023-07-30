@@ -44,15 +44,15 @@ export async function ActualizarGuardarM(metodo, parametros, url) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(parametros),
+    body: JSON.stringify(parametros),  
   };
 
   try {
     const response = await fetch(url, requestOptions);
     const data = await response.json();
     const mensaje = data.mensaje;
-    showAlerta(mensaje, "success");
     if (mensaje === "ok aki estamos" || mensaje =="ok") {
+      showAlerta(mensaje, "success");
       // Si el mensaje es "ok aki estamos", significa que la actualización fue exitosa
       window.location.reload(); // Recarga la página actual
     }

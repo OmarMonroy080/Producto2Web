@@ -1,9 +1,14 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import '../assets/css/sidebar.css';
-import { useEffect } from 'react';
 import imgAvatar from '../assets/images/avatar.png';
-
+import {showAlerta} from "../../ConsumoAPI/Funciones/funciones";
 const HeaderAdmin = () => {
+  //actualizando el useState para el logueo
+  const handleLogout = () => {
+    showAlerta("Vuelve Pronto"+setAutenticado.nombre,"success")
+    setAutenticado({ isLoggedIn: 0, nombre: "" });
+
+  };
   const handleAside = () => {
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
       const toggle = document.getElementById(toggleId);
@@ -95,8 +100,7 @@ const HeaderAdmin = () => {
                 </NavLink>
               </div>
             </div>
-
-            <NavLink to="/" className="text-decoration-none">
+            <NavLink to="/"onClick={handleLogout} className="text-decoration-none">
               <div className="nav_link">
                 <i className="bx bx-log-out nav_icon"></i>
                 <span className="nav_name">Cerrar sesion</span>
