@@ -40,7 +40,7 @@ function App() {
             <Route path="categories" element={<CategoriesPage />}></Route>
             <Route path="categories/create" element={<CreateCategory />} />
 
-            <Route path="products" element={<ProductsPage />} />
+            <Route path="products" element={<ProductsPage  />} />
             <Route path="products/create" element={<CreateProduct />} />
 
             <Route path="outputs-inputs" element={<OutputsInputsPage />} />

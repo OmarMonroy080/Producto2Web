@@ -1,42 +1,37 @@
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { showAlerta } from "../Funciones/funciones";
-const getSuspender = (promise) => {
-  let status = "pending";
-  let response;
 
-  const suspender = promise.then(
-    (res) => {
-      status = "success";
-      response = res;
+
+
+export async function ListarMuebles() {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
-    (err) => {
-      status = "error";
-      response = err;
-    }
-  );
-
-  const read = () => {
-    switch (status) {
-      case "pending":
-        throw suspender;
-      case "error":
-        throw response;
-      default:
-        return response;
-    }
   };
 
-  return { read };
-};
+  try {
+    const response = await fetch("http://www.muebleriatroncoso.somee.com/api/Mueble/Muebles", requestOptions);
+    const data = await response.json();
+    const mensaje = data.mensaje;
 
-export function ListarMuebles(url) {
-  const promise = fetch(url)
-    .then((response) => response.json())
-    .then((json) => json);
+    // Si el mensaje es "ok", significa que la solicitud fue exitosa
+    if (mensaje === "ok") {
+      return data;
+    } else {
+      // Si el mensaje no es "ok aki estamos", algo salió mal, lanzamos una excepción con el mensaje del servidor
+      throw new Error(mensaje);
+    }
+  } catch (error) {
+    // Capturamos cualquier error en la solicitud o en el procesamiento JSON
+    showAlerta("Error en la solicitud", "error");
+    console.log(error);
+  }
 
-  return getSuspender(promise);
-};
+}
+
 
 export async function ActualizarGuardarM(metodo, parametros, url) {
   const requestOptions = {
@@ -53,8 +48,6 @@ export async function ActualizarGuardarM(metodo, parametros, url) {
     const mensaje = data.mensaje;
     if (mensaje === "ok aki estamos" || mensaje =="ok") {
       showAlerta(mensaje, "success");
-      // Si el mensaje es "ok aki estamos", significa que la actualización fue exitosa
-      window.location.reload(); // Recarga la página actual
     }
   } catch (error) {
     showAlerta("Error en la solicitud", "error");
@@ -90,8 +83,7 @@ export function BorrarMueble(id, name) {
         const data = await response.json(); // Leer el contenido de la respuesta
 
         if (data.mensaje === 'ok') {
-          showAlerta('El producto fue eliminado correctamente', 'success');
-          window.location.reload(); // Recarga la página actual
+          showAlerta('El producto fue eliminado correctamente', 'success'); 
 
         } else {
           showAlerta('No se pudo eliminar el producto', 'error');
