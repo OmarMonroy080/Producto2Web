@@ -22,9 +22,6 @@ const Hero = () => {
           <Link className="btn btn-primary w-100" to="login">
             Iniciar sesion
           </Link>
-          <Link className="btn btn-outline-primary w-100" to="register">
-            Registrar
-          </Link>
         </div>
       </div>
     </>

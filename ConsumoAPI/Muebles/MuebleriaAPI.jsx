@@ -1,5 +1,4 @@
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+
 import { showAlerta } from "../Funciones/funciones";
 
 
@@ -55,49 +54,33 @@ export async function ActualizarGuardarM(metodo, parametros, url) {
   }
 };
 
-export function BorrarMueble(id, name) {
-  const MySwal = withReactContent(Swal);
-  MySwal.fire({
-      title:'¿Seguro de eliminar el producto '+name+' ?',
-      icon: 'question',text:'No se podrá dar marcha atrás',
-      showCancelButton:true,confirmButtonText:'Si, eliminar',cancelButtonText:'Cancelar'
-  }).then((result) =>{
-      if(result.isConfirmed){
-          deleteProductOnServer(id)
-      }
-      else{
-          show_alerta('El producto NO fue eliminado','info');
-      }
-  });
+export async function BorrarMueble(id, name) {
+  try {
+    const response = await fetch(`http://www.muebleriatroncoso.somee.com/api/Mueble/Eliminar/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const deleteProductOnServer = async (id) => {
-    try {
-      const response = await fetch(`http://www.muebleriatroncoso.somee.com/api/Mueble/Eliminar/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    if (response.ok) {
+      const data = await response.json(); // Leer el contenido de la respuesta
 
-      if (response.ok) {
-        const data = await response.json(); // Leer el contenido de la respuesta
+      if (data.mensaje === 'ok') {
+        showAlerta('El producto fue eliminado correctamente', 'success'); 
 
-        if (data.mensaje === 'ok') {
-          showAlerta('El producto fue eliminado correctamente', 'success'); 
-
-        } else {
-          showAlerta('No se pudo eliminar el producto', 'error');
-        }
-      } else if (response.status === 400) {
-        // Cuando el servidor devuelve BadRequest (código 400), significa que el mueble no fue encontrado
-        showAlerta('Producto no encontrado', 'error');
       } else {
-        showAlerta('Error en la solicitud', 'error');
+        showAlerta('No se pudo eliminar el producto', 'error');
       }
-    } catch (error) {
+    } else if (response.status === 400) {
+      // Cuando el servidor devuelve BadRequest (código 400), significa que el mueble no fue encontrado
+      showAlerta('Producto no encontrado', 'error');
+    } else {
       showAlerta('Error en la solicitud', 'error');
-      console.log(error);
     }
-  };
+  } catch (error) {
+    showAlerta('Error en la solicitud', 'error');
+    console.log(error);
+  }
 };
 

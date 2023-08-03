@@ -39,6 +39,8 @@ const LoginPage = ({ setAutenticado }) => {
             state: { logged: true, email: form.email },
           });
         }
+      }else if(correoIsValid === false){
+        showAlerta("Ingresa un correo valido",'error');
       }
     }
   };
