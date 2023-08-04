@@ -16,7 +16,6 @@ const HomePage = () => {
   const getMuebles=async()=>{
     const respuesta = await axios.get(url);
     setMuebles(respuesta.data.response);
-    console.log(respuesta);
   }
 
   return (
