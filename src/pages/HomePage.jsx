@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import CardProduct from '../components/CardProduct';
 import Hero from '../components/Hero';
-import axios from 'axios';
+//import axios from 'axios';
 
-
+import{ListarMuebles} from "../../ConsumoAPI/Muebles/MuebleriaAPI";
 
 const HomePage = () => {
   const url='http://www.muebleriatroncoso.somee.com/api/Mueble/Muebles';
@@ -13,9 +13,17 @@ const HomePage = () => {
     getMuebles();
   },[]);
 
+
   const getMuebles=async()=>{
-    const respuesta = await axios.get(url);
-    setMuebles(respuesta.data.response);
+    try {
+      const dataR = await ListarMuebles();
+      setMuebles(dataR.response);
+    } catch (error) {
+      console.log("Error al obtener los muebles:", error);
+    }
+    //Codigo Perla Actualziar una vez descagardo AXIOS;
+    // const respuesta = await axios.get(url);
+    // setMuebles(respuesta.data.response);
   }
 
   return (
@@ -30,7 +38,7 @@ const HomePage = () => {
               key={mueble.idMueble}
               title={mueble.nombre}
               description={mueble.descripcion}
-              src={'https://m.media-amazon.com/images/I/51fB+Qnee1L._AC_SY300_SX300_.jpg'}
+              src={mueble.src}
             />
           ))}
         </div>

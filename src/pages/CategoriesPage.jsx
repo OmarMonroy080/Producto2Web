@@ -1,8 +1,6 @@
 import { ListarCategorias, ActualizarGuardarC, BorrarC } from "../../ConsumoAPI/Categorias/CategoriasAPI";
 
 //http://www.muebleriatroncoso.somee.com/api/Categorias
-
-import { Link } from 'react-router-dom';
 import { Suspense, useState, useEffect } from 'react';
 import { showAlerta } from "../../ConsumoAPI/Funciones/funciones";
 import Swal from 'sweetalert2';
