@@ -1,6 +1,7 @@
 import { ListarMuebles, ActualizarGuardarM, BorrarMueble } from "../../ConsumoAPI/Muebles/MuebleriaAPI";
 import { Suspense, useState, useEffect } from 'react';
-import { showAlerta } from "../../ConsumoAPI/Funciones/funciones";
+import { ListarCategorias } from "../../ConsumoAPI/Categorias/CategoriasAPI";
+import { showAlerta, esLink } from "../../ConsumoAPI/Funciones/funciones";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -12,22 +13,25 @@ const ProductsPage = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [Categoria, setCategoria] = useState(-1);
+  const [SRC, setSRC] = useState('');
 
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
   const [data, setData] = useState([]);
   const [dataChanged, setDataChanged] = useState(false);
-
-
+  const [Categorias,setCategorias] = useState([]);
+ 
   const fetchData = async () => {
     try {
       const dataR = await ListarMuebles();
+      const Categorias = await ListarCategorias();
       setData(dataR);
+      setCategorias(Categorias);
     } catch (error) {
       console.log("Error al obtener los muebles:", error);
     }
   };
-  const resetDataC = ()=>{
+  const resetDataC = () => {
     setDataChanged(true)
   }
 
@@ -38,11 +42,12 @@ const ProductsPage = () => {
 
 
 
-  const openModal = (op, id, name, description, Categoria) => {
+  const openModal = (op, id, name, description, Categoria,SRC) => {
     setId('');
     setName('');
     setDescription('');
     setOperation(op);
+    setSRC('')
     if (op === 1) {
       setTitle('Registrar Producto');
     }
@@ -52,6 +57,7 @@ const ProductsPage = () => {
       setName(name);
       setDescription(description);
       setCategoria(Categoria);
+      setSRC(SRC);
     }
     window.setTimeout(function () {
       document.getElementById('nombre').focus();
@@ -69,25 +75,33 @@ const ProductsPage = () => {
     else if (Categoria === -1) {
       showAlerta('Escribe la categoría del Mueble', 'warning');
     }
+    else if (SRC === '') {
+      showAlerta('Ingresa un link para la imagen',"warning");
+    }
     else {
-      if (operation === 1) {
+      if (esLink(SRC)) {
+        if (operation === 1) {
 
-        parametros = { nombre: name.trim(), descripcion: description.trim(), idCategoria: Categoria };
-        metodo = 'POST';
-        Uri = "Mueble/Guardar";
-      }
-      else {
-        parametros = { idMueble: id, nombre: name.trim(), descripcion: description.trim(), idCategoria: Categoria };
-        metodo = 'PUT';
-        Uri = "Mueble/Actualizar";
+          parametros = { nombre: name.trim(), descripcion: description.trim(), idCategoria: Categoria,src:SRC };
+          metodo = 'POST';
+          Uri = "Mueble/Guardar";
+        }
+        else {
+          parametros = { idMueble: id, nombre: name.trim(), descripcion: description.trim(), idCategoria: Categoria,src:SRC };
+          metodo = 'PUT';
+          Uri = "Mueble/Actualizar";
 
+        }
+        ActualizarGuardarM(metodo, parametros, Url + Uri);
+        setTimeout(resetDataC(), 2000);
       }
-      ActualizarGuardarM(metodo, parametros, Url + Uri);
-      setTimeout(resetDataC(),2000);
+      else{
+        showAlerta("Ingresa un link valido","warning");
+      }
     }
   }
 
-  const eliminar =  (ide, n) => {
+  const eliminar = (ide, n) => {
     const e = async (ide1) => {
       await BorrarMueble(ide1)
     }
@@ -100,13 +114,20 @@ const ProductsPage = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           e(ide);
-          setTimeout(resetDataC(),2000);
-          
+          setTimeout(resetDataC(), 2000);
+
         }
       });
     } catch (error) {
       console.log("Error al eliminar el mueble:", error);
     }
+  };
+
+  const estiloImagen = {
+    width: '100px', // Ejemplo: ancho de la imagen de 200 píxeles
+    height: 'auto', // Ejemplo: altura se ajusta automáticamente al ancho
+    border: '1px solid black', // Ejemplo: borde negro de 1 píxel
+    borderRadius: '25px', // Ejemplo: esquinas redondeadas de 5 píxeles
   };
   return (
     <>
@@ -133,6 +154,7 @@ const ProductsPage = () => {
               <th>Categoria</th>
               <th>Nombre del producto</th>
               <th>Descripcion</th>
+              <th>IMG</th>
             </tr>
           </thead>
           <tbody>
@@ -140,12 +162,12 @@ const ProductsPage = () => {
               {data.response?.map((mueble) => (
                 <tr key={mueble.idMueble}>
                   <td>{mueble.idMueble}</td>
-                  
                   <td>{mueble.oCategoria.categoria1}</td>
                   <td>{mueble.nombre}</td>
                   <td>{mueble.descripcion}</td>
+                  <td><img src={mueble.src} alt="Mueble" style={estiloImagen} /></td>
                   <td className="d-flex justify-content-center g-3">
-                    <button onClick={() => openModal(2, mueble.idMueble, mueble.nombre, mueble.descripcion, mueble.oCategoria.idCategoria)}
+                    <button onClick={() => openModal(2, mueble.idMueble, mueble.nombre, mueble.descripcion, mueble.oCategoria.idCategoria,mueble.src)}
                       className='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalProducts'>
                       <i className='fa-solid fa-edit'></i>
                     </button>
@@ -172,7 +194,7 @@ const ProductsPage = () => {
             <div className='modal-body'>
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
-                <span className='input-group-text'><i className='fa-solid fa-gift'></i></span>
+                <span className='input-group-text'><i className='fa-solid fa-table'></i></span>
                 <input type='text' id='nombre' className='form-control' placeholder='Nombre' value={name}
                   onChange={(e) => setName(e.target.value)}></input>
               </div>
@@ -182,13 +204,16 @@ const ProductsPage = () => {
                   onChange={(e) => setDescription(e.target.value)}></input>
               </div>
               <div className='input-group mb-3'>
-                <span className='input-group-text'><i className='fa-solid fa-dollar-sign'></i></span>
+                <span className='input-group-text'><i className='fa-solid fa-square-check'></i></span>
                 <select id='categoria' className='form-control' value={Categoria} onChange={(e) => setCategoria(e.target.value)}>
-                  <option value={-1}>Seleccionar Categoría</option>
-                  <option value={1}>Mesas</option>
-                  <option value={2}>sillas 2</option>
-                  <option value={3}>colchones</option>
+                  {Categorias.map((Cate)=>(
+                    <option value={Cate.idCategoria}>{Cate.categoria1}</option>
+                  ))}
                 </select>
+              </div><div className='input-group mb-3'>
+                <span className='input-group-text'><i className='fa-solid fa-link'></i></span>
+                <input type='text' id='descripcion' className='form-control' placeholder='Imagen Link' value={SRC}
+                  onChange={(e) => setSRC(e.target.value)}></input>
               </div>
               <div className='d-grid col-6 mx-auto'>
                 <button onClick={() => validar()} className='btn btn-success'>
