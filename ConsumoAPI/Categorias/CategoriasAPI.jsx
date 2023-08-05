@@ -14,7 +14,6 @@ export async function ListarCategorias() {
 
         if (response.ok) {
             const data = await response.json();
-            // Aquí puedes hacer lo que necesites con los datos
             return data;
         } 
     } catch (error) {
