@@ -6,10 +6,8 @@ const OutputsInputsPage = () => {
   const [ventas, setVentas] = useState([]);
 
   useEffect(() => {
-    // Llamamos a la función ListarVentas para obtener los datos de la API
     ListarVentas()
       .then((data) => {
-        // Actualizamos el estado con los datos de ventas recibidos
         setVentas(data);
       })
       .catch((error) => {
@@ -20,10 +18,8 @@ const OutputsInputsPage = () => {
   const handleEliminarVenta = async (idVenta) => {
     try {
       await EliminarVenta(idVenta);
-      // Si la eliminación es exitosa, actualizamos el estado de ventas para reflejar el cambio
       setVentas((prevVentas) => prevVentas.filter((venta) => venta.idVenta !== idVenta));
     } catch (error) {
-      // Manejar el error si es necesario
       console.log(error);
     }
   };
@@ -32,9 +28,7 @@ const OutputsInputsPage = () => {
     <>
       <h1 className="mb-3">Ventas</h1>
 
-
       {/* modal */}
-      
 
       <div className="table-responsive shadow">
         <table
@@ -46,6 +40,8 @@ const OutputsInputsPage = () => {
               <th>Id</th>
               <th>Nombre del mueble</th>
               <th>Nombre del usuario</th>
+              <th>Fecha</th>
+              <th>Categoría</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -55,6 +51,8 @@ const OutputsInputsPage = () => {
                 <td>{venta.idVenta}</td>
                 <td>{venta.nombreMueble}</td>
                 <td>{venta.nombreUsuario}</td>
+                <td>{venta.date}</td>
+                <td>{venta.categoria}</td>
                 <td className="d-flex justify-content-center g-3">
                   <Link to={`/venta/${venta.idVenta}`} className="btn btn-info mx-1">
                     <i className="fas fa-info-circle"></i> Detalles
@@ -64,7 +62,7 @@ const OutputsInputsPage = () => {
                   </Link>
                   <button
                     className="btn btn-danger mx-1"
-                    onClick={() => handleEliminarVenta(venta.idVenta)} // Agregamos la funcionalidad de eliminar
+                    onClick={() => handleEliminarVenta(venta.idVenta)}
                   >
                     <i className="fas fa-minus-circle"></i> Eliminar
                   </button>
