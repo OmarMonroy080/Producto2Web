@@ -1,121 +1,81 @@
-import { Bar, Line } from 'react-chartjs-2';
 import { ListarVentas } from '../../ConsumoAPI/Ventas/VentasAPI';
 import { useState, useEffect, useRef } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from 'chart.js';
+import { ListarMuebles } from '../../ConsumoAPI/Muebles/MuebleriaAPI';
+import GraficoXMueble from './Graficos/GraficoXMueble';
+import GraficoVentasMes from './Graficos/GraficoVentasMes';
+import withReactContent from 'sweetalert2-react-content';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
 
-var misoptions = {
-  responsive: true,
-  animation: false,
-  plugins: {
-    legend: {
-      display: false
-    }
-  },
-  scales: {
-    y: {
-      min: 0,
-      max: 20
-    },
-    x: {
-      ticks: { color: 'rgba(0, 220, 195)' }
-    }
-  }
-};
 const DashboardPage = () => {
-  const [data, setData] = useState(null);
-  const chartRef = useRef(null);
 
+  const [selectedMueble, setSelectedMueble] = useState(1);
+  const [LMuebles, setLMuebles] = useState([]);
+  const [mostrarGrafico, setMostrarGrafico] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const dataR = await ListarMuebles();
+      setLMuebles(dataR);
+    } catch (error) {
+      console.log("Error al obtener los muebles:", error);
+    }
+  };
+
+  const handleChangeMueble = (event) => {
+    setMostrarGrafico(true);
+  };
   useEffect(() => {
     fetchData();
   }, []);
 
-  async function fetchData() {
-    try {
-      const ventas = await ListarVentas();
-      const a =()=>{
-        
-        setData(ventas);
-      }
-      setTimeout(a,2000);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
-  const contarVentasPorMueble = (ventas) => {
-    const ventasPorMueble = {};
-    ventas.forEach((venta) => {
-      const { nombreMueble } = venta;
-      if (nombreMueble in ventasPorMueble) {
-        ventasPorMueble[nombreMueble]++;
-      } else {
-        ventasPorMueble[nombreMueble] = 1;
-      }
-    });
-    return ventasPorMueble;
-  };
-  const ventasPorMueble = data ? contarVentasPorMueble(data) : {};
-
-  var midata = {
-    labels: Object.keys(ventasPorMueble),
-    datasets: [ // Cada una de las líneas del gráfico
-      {
-        label: 'Ventas Por Mueble',
-        data: Object.values(ventasPorMueble),
-        tension: 0.5,
-        fill: true,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointRadius: 5,
-        pointBorderColor: 'rgba(255, 99, 132)',
-        pointBackgroundColor: 'rgba(255, 99, 132)',
-      }
-    ],
-  };
-
-  useEffect(() => {
-    // Cuando los datos cambien y chartRef.current sea válido, destruir el gráfico anterior y crear uno nuevo.
-    if (chartRef.current) {
-      chartRef.current.destroy();
-    }
-    if (chartRef.current && midata && Object.keys(ventasPorMueble).length > 0) {
-      chartRef.current = new ChartJS(chartRef.current, {
-        type: 'bar',
-        data: midata,
-        options: misoptions,
-      });
-      fetchData();
-    }
-  }, [ventasPorMueble, midata]);
-  return <>
-   <div className='lg-6'>
-      <h2>Ventas Muebleria</h2>
-      <Bar data={midata} options={misoptions} />
-   </div>
-  </>
-}
+  return (
+    <>
+      <div className='d-flex justify-content-center align-items-center'>
+        <h2 className=''>Dashboard</h2>
+      </div>
+      <div className='row'>
+        <div id='3' className='col col-lg-7'>
+          <h3>Ventas Por Muebles</h3>
+          <GraficoVentasMes />
+        </div>
+        <div className='col col-lg-5'>
+          <div className='form row'>
+            <h3>Ventas del Mueble por Mes</h3>
+            <div className='col col-lg-8'>
+              <select
+                id='Muebles'
+                className='form-control form-select form-select-sm mb-3'
+                value={selectedMueble}
+                onChange={(e) => setSelectedMueble(e.target.value)}
+                aria-label='.form-select-lg'
+              >
+                {LMuebles.response?.map((Mueble) => (
+                  <option value={Mueble.idMueble} key={Mueble.idMueble}>
+                    {Mueble.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className='col col-lg-4'>
+              <button onClick={() => handleChangeMueble()} className='btn btn-primary'>
+                <i className='fa-solid fa-magnifying-glass'></i>Buscar
+              </button>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col col-lg-12'>
+              {mostrarGrafico && (
+                <div id={`mueble-${selectedMueble}-chart-container`}>
+                <GraficoXMueble idMueble={selectedMueble} />
+              </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 
 export default DashboardPage;
