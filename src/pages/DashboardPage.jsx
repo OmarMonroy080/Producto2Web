@@ -1,17 +1,5 @@
-import { Bar, Line } from 'react-chartjs-2';
-import { ListarVentas } from '../../ConsumoAPI/Ventas/VentasAPI';
-import { useState, useEffect, useRef } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from 'chart.js';
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
