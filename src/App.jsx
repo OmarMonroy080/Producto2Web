@@ -19,6 +19,7 @@ import CreateInputOutput from './pages/CreateInputOutput';
 import CreateUser from './pages/CreateUser';
 import Page404 from './pages/Page404';
 import { useState } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 
 function App() {
   const [Autenticado, setAutenticado] = useState({ isLoggedIn: 0, nombre: "" });

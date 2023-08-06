@@ -10,6 +10,7 @@ export async function ListarVentas() {
       "Content-Type": "application/json",
     },
   };
+
   try {
     const response = await fetch("http://www.muebleriatroncoso.somee.com/api/Ventas/ListarVentas", requestOptions);
     const data = await response.json();
@@ -17,17 +18,17 @@ export async function ListarVentas() {
 
     // Si el mensaje es "ok", significa que la solicitud fue exitosa
     if (mensaje === "ok") {
-      return data.response;
+      return data.response; // Devuelve directamente el array de datos (data.response)
     } else {
-      // Si el mensaje no es "ok aki estamos", algo salió mal, lanzamos una excepción con el mensaje del servidor
+      // Si el mensaje no es "ok", algo salió mal, lanzamos una excepción con el mensaje del servidor
       throw new Error(mensaje);
     }
   } catch (error) {
     // Capturamos cualquier error en la solicitud o en el procesamiento JSON
     showAlerta("Error en la solicitud", "error");
     console.log(error);
+    return []; // Devuelve un array vacío en caso de error para que el componente no falle
   }
-
 }
 
 
