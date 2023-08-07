@@ -5,19 +5,19 @@ import GraficoXMueble from './Graficos/GraficoXMueble';
 import GraficoVentasMes from './Graficos/GraficoVentasMes';
 import withReactContent from 'sweetalert2-react-content';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const DashboardPage = () => {
   const generatePDF = () => {
     const pdf = new jsPDF();
-
-    // Captura el contenido de las gráficas e información en HTML
     const content = document.getElementById('content-to-export');
 
-    // Genera el PDF a partir del contenido HTML
-    pdf.fromHTML(content, 15, 15);
-
-    // Descarga el PDF
-    pdf.save('graficas_y_datos.pdf');
+    html2canvas(content)
+      .then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+        pdf.save('graficas_y_datos.pdf');
+      });
   };
 
   const [selectedMueble, setSelectedMueble] = useState(1);
@@ -42,7 +42,7 @@ const DashboardPage = () => {
 
   return (
     <>
-     <button onClick={generatePDF}>Descargar Gráficas y Datos</button>
+      <button onClick={generatePDF}>Descargar Gráficas y Datos</button>
       <div id='content-to-export'>
         <div className='d-flex justify-content-center align-items-center'>
           <h2 >Dashboard</h2>
