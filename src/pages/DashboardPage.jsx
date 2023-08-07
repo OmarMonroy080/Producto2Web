@@ -31,7 +31,7 @@ const DashboardPage = () => {
   return (
     <>
       <div className='d-flex justify-content-center align-items-center'>
-        <h2 className=''>Dashboard</h2>
+        <h2 >Dashboard</h2>
       </div>
       <div className='row'>
         <div id='3' className='col col-lg-7'>
