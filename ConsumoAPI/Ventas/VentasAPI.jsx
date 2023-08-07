@@ -1,27 +1,5 @@
 import { showAlerta } from "../Funciones/funciones";
 
-export async function ActualizarVenta(parametros, url) {
-  const requestOptions = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(parametros),  
-  };
-
-  try {
-    const response = await fetch(url, requestOptions);
-    const data = await response.json();
-    const mensaje = data.mensaje;
-    if (mensaje === "ok") {
-      showAlerta(mensaje, "success");
-    }
-  } catch (error) {
-    showAlerta("Error en la solicitud", "error");
-    console.log(error);
-    throw error; // Re-lanzamos el error para que el componente que llama a esta función pueda manejarlo
-  }
-}
 
 export async function EliminarVenta(idVenta) {
   const requestOptions = {
