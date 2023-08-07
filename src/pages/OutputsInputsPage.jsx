@@ -188,7 +188,7 @@ const OutputsInputsPage = () => {
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
                 <span className='input-group-text'><i className='fa-solid fa-square-check'></i></span>
-                <select id='Usuario' className='form-control' value={idUsuario} onChange={(e) => setCategoria(e.target.value)}>
+                <select id='Usuario' className='form-control' value={idUsuario} onChange={(e) => setIdUsuario(e.target.value)}>
                 <option value="-1">Selecione un Usuario</option>
                   {Usuarios.usuariosL?.map((usuario) => (
                     <option value={usuario.idUsuario}>{usuario.nombre}</option>
@@ -197,7 +197,7 @@ const OutputsInputsPage = () => {
               </div>
               <div className='input-group mb-3'>
                 <span className='input-group-text'><i className='fa-solid fa-square-check'></i></span>
-                <select id='Usuario' className='form-control' value={idMueble} onChange={(e) => setCategoria(e.target.value)}>
+                <select id='Usuario' className='form-control' value={idMueble} onChange={(e) => setIdMueble(e.target.value)}>
                 <option value="-1">Selecione un Mueble</option>
                   {Muebles.response?.map((mueble) => (
                     <option value={mueble.idMueble}>{mueble.nombre }</option>
