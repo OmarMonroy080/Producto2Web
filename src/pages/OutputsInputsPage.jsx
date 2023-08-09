@@ -150,6 +150,7 @@ const OutputsInputsPage = () => {
               <th>Nombre Mueble</th>
               <th>Nombre Usuario</th>
               <th>Fecha Venta</th>
+              <th>Categoria</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -160,6 +161,7 @@ const OutputsInputsPage = () => {
                 <td>{venta.nombreMueble}</td>
                 <td>{venta.nombreUsuario}</td>
                 <td>{venta.date}</td>
+                <td>{venta.categoria}</td>
                 <td className="d-flex justify-content-center g-3">
                   <button onClick={() => openModal(2, venta.idVenta, venta.idUsuario, venta.idMueble)}
                     className='btn btn-warning' data-bs-toggle='modal' data-bs-target='#modalProducts'>
