@@ -80,10 +80,7 @@ const LoginPage = ({ setAutenticado }) => {
             <div className="col-lg-5 px-4 py-5" style={styles}>
               <h1>Iniciar sesion</h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti excepturi quasi, maxime eaque est rem. Explicabo quia
-                eaque labore deleniti qui maxime dolor unde, blanditiis quas ab
-                sequi, rem nam!
+                
               </p>
 
               <form >
