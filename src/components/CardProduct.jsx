@@ -11,7 +11,7 @@ const CardProduct = ({ src, title, description }) => {
               <h5 className="card-title text-primary">{title}</h5>
               <p className="card-text">{description}</p>
               <p className="card-text">
-                <button className="btn btn-outline-primary">Ir al producto</button>
+                {/* <button className="btn btn-outline-primary disabled">Ir al producto</button> */}
               </p>
             </div>
           </div>
