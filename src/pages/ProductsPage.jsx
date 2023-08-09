@@ -206,6 +206,7 @@ const ProductsPage = () => {
               <div className='input-group mb-3'>
                 <span className='input-group-text'><i className='fa-solid fa-square-check'></i></span>
                 <select id='categoria' className='form-control' value={Categoria} onChange={(e) => setCategoria(e.target.value)}>
+                  <option value="-1">Seleccionar una Categoria</option>
                   {Categorias.map((Cate)=>(
                     <option value={Cate.idCategoria}>{Cate.categoria1}</option>
                   ))}

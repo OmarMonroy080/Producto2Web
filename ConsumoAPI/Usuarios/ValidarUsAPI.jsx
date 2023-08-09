@@ -16,14 +16,14 @@ export async function ValidarLogin(metodo, parametros, url) {
         const response = await fetch(url, requestOptions);
         const data = await response.json();
         const mensaje = data.mensaje;
-
-        showAlerta(mensaje, "success");
-
         if (mensaje === "Ingreso exitoso") {
             logueado.isLoggedIn = true;
             logueado.idUsuario = data.idUsuario;
             logueado.nombre = data.nombre
             showAlerta('Bienvenido ' + data.nombre, 'success');
+        }
+        else{
+            showAlerta("Error Correo o contraseña Incorrectos","warning");
         }
     } catch (error) {
         if (response.status === 400) {

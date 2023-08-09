@@ -61,7 +61,7 @@ const GraficoVentasMes = () => {
 
                 setData(ventas);
             }
-            setTimeout(a, 2000);
+            setTimeout(a, 1000);
         } catch (error) {
             console.log(error);
         }

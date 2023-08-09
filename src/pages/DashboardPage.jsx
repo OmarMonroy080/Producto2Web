@@ -21,6 +21,7 @@ const DashboardPage = () => {
   };
 
   const [selectedMueble, setSelectedMueble] = useState(1);
+  const [NombreMuebleSelect, setNombreMuebleSelect] = useState('');
   const [LMuebles, setLMuebles] = useState([]);
   const [mostrarGrafico, setMostrarGrafico] = useState(false);
 
@@ -42,7 +43,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <button onClick={generatePDF}>Descargar Gráficas y Datos</button>
+      <button className='btn btn-primary' onClick={generatePDF}>Descargar Gráficas</button>
       <div id='content-to-export'>
         <div className='d-flex justify-content-center align-items-center'>
           <h2 >Dashboard</h2>
@@ -54,13 +55,18 @@ const DashboardPage = () => {
           </div>
           <div className='col col-lg-5'>
             <div className='form row'>
-              <h3>Ventas del Mueble por Mes</h3>
+              <h3>Ventas del Mueble en el Mes</h3>
               <div className='col col-lg-8'>
                 <select
                   id='Muebles'
                   className='form-control form-select form-select-sm mb-3'
                   value={selectedMueble}
-                  onChange={(e) => setSelectedMueble(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedMueble(e.target.value);
+                    const selectedOption = e.target.options[e.target.selectedIndex];
+                    const selectedMuebleNombre = selectedOption.text;
+                    setNombreMuebleSelect(selectedMuebleNombre);
+                  }}
                   aria-label='.form-select-lg'
                 >
                   {LMuebles.response?.map((Mueble) => (
@@ -80,7 +86,7 @@ const DashboardPage = () => {
               <div className='col col-lg-12'>
                 {mostrarGrafico && (
                   <div id={`mueble-${selectedMueble}-chart-container`}>
-                    <GraficoXMueble idMueble={selectedMueble} />
+                    <GraficoXMueble idMueble={selectedMueble} nombreM={NombreMuebleSelect} />
                   </div>
                 )}
               </div>

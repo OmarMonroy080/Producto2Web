@@ -13,10 +13,7 @@ import ProductsPage from './pages/ProductsPage';
 import OutputsInputsPage from './pages/OutputsInputsPage';
 import UsersPage from './pages/UsersPage';
 import DashboardPage from './pages/DashboardPage';
-import CreateCategory from './pages/CreateCategory';
-import CreateProduct from './pages/CreateProduct';
-import CreateInputOutput from './pages/CreateInputOutput';
-import CreateUser from './pages/CreateUser';
+
 import Page404 from './pages/Page404';
 import { useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
@@ -39,16 +36,12 @@ function App() {
             <Route index element={<HomeAdminPage nombre= {Autenticado.nombre} />} />
 
             <Route path="categories" element={<CategoriesPage />}></Route>
-            <Route path="categories/create" element={<CreateCategory />} />
 
             <Route path="products" element={<ProductsPage  />} />
-            <Route path="products/create" element={<CreateProduct />} />
 
             <Route path="outputs-inputs" element={<OutputsInputsPage />} />
-            <Route path="outputs-inputs/create" element={<CreateInputOutput />} />
 
             <Route path="users" element={<UsersPage />} />
-            <Route path="users/create" element={<CreateUser />} />
 
 
             <Route path="dashboard" element={<DashboardPage />} />

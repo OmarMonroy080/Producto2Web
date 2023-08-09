@@ -38,7 +38,7 @@ var misoptions = {
 };
 
 
-const GraficoXMueble = ({ idMueble }) => {
+const GraficoXMueble = ({ idMueble,nombreM }) => {
     const [data, setData] = useState([]);
     const chartRef = useRef(null);
     useEffect(() => {
@@ -59,17 +59,16 @@ const GraficoXMueble = ({ idMueble }) => {
         const fechaActual = new Date();
         const mesActual = fechaActual.getMonth() + 1;
         var ventasMM = [];
-        ventas.forEach((venta)=>{
+        ventas.forEach((venta) => {
             const fechaV = new Date(venta.date);
-            const mesV = fechaV.getMonth()+1;
-            if(mesV == mesActual){
-                if(venta.idMueble == idMueble){
+            const mesV = fechaV.getMonth() + 1;
+            if (mesV == mesActual) {
+                if (venta.idMueble == idMueble) {
 
                     ventasMM.push(venta);
                 }
             }
         })
-        console.log(ventasMM);
         return ventasMM;
     };
 
@@ -77,19 +76,22 @@ const GraficoXMueble = ({ idMueble }) => {
 
     const contarVentasPorDia = (ventas) => {
         const ventasPorDia = {};
-    
+
         ventas.forEach((venta) => {
-          const fechaVenta = new Date(venta.date);
-          const diaVenta = fechaVenta.getDate();
-    
-          if (!ventasPorDia[diaVenta]) {
-            ventasPorDia[diaVenta] = 0;
-          }
-          ventasPorDia[diaVenta]++;
+            const fechaVenta = new Date(venta.date);
+            const diaVenta = fechaVenta.getDate();
+            const MesVenta = fechaVenta.getMonth() + 1;
+            const YearVenta = fechaVenta.getFullYear();
+            const Fformat = `${diaVenta}/${MesVenta}/${YearVenta}`;
+            if (!ventasPorDia[Fformat]) {
+                ventasPorDia[Fformat] = 1;
+            } else {
+                ventasPorDia[Fformat] += 1;
+            }
         });
-    
+
         return ventasPorDia;
-      };
+    };
 
     const ventasPorDia = ventasPorMuebleEnMesActual ? contarVentasPorDia(ventasPorMuebleEnMesActual) : {};
 
@@ -97,7 +99,7 @@ const GraficoXMueble = ({ idMueble }) => {
         labels: Object.keys(ventasPorDia),
         datasets: [
             {
-                label: `Ventas del Mueble ${idMueble}`,
+                label: `Ventas del Mueble ${nombreM}`,
                 data: Object.values(ventasPorDia),
                 fill: true,
                 borderColor: 'rgb(75, 192, 192)',
